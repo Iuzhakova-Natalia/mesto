@@ -3,3 +3,20 @@
     min-height: 33px;
     margin-bottom: 41px;
 }
+
+
+@media screen and (max-width: 768px) {
+    .header__logo { 
+      max-width: 115px;
+      min-height: 28px;
+      margin-bottom: 35px;
+    }  
+}
+
+@media screen and (max-width: 320px) {
+    .header__logo {
+      max-width: 104px;
+      min-height: 24px;
+      margin-bottom: 31px;
+    }
+}
