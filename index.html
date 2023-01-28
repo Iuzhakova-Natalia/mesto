@@ -9,17 +9,18 @@
   <body class="page">
     <header class="header">
         <img class="header__logo" src="./images/header__logo.svg" alt="Логотип" >
-        <img class="header__line" src="./images/header__line.svg" alt="линия">
     </header>
     <main class="content">
       <section class="profile">
         <img class="profile__avatar" src="./images/profile__avatar.jpg" alt="фото">
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
+          <div class="profile__info-line">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"></button>
+          </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"> + </button>
+        <button class="profile__add-button"></button>
       </section>
       <section class="cards">
         <ul class="card">
@@ -27,7 +28,7 @@
               <img class="card__image" src="./images/Karachaevsk.jpg" alt="Замок в горах">
               <div class="card__info">
               <h2 class="card__title">Карачаевск</h2>
-              <img class="card__like" src="./images/card__like.jpg" alt="сердечко">
+              <button class="card__like"></button>
               </div>
           </li>
         </ul>
@@ -36,7 +37,7 @@
               <img class="card__image" src="./images/Elbrus.jpg" alt="Эльбрус">
               <div class="card__info">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <img class="card__like" src="./images/card__like.jpg" alt="сердечко">
+              <button class="card__like"></button>
               </div>
           </li>
         </ul>
@@ -45,7 +46,7 @@
               <img class="card__image" src="./images/Dombai.jpg" alt="Эльбрус">
               <div class="card__info">
               <h2 class="card__title">Домбай</h2>
-              <img class="card__like" src="./images/card__like.jpg" alt="сердечко">
+              <button class="card__like"></button>
               </div>
           </li>
         </ul>
@@ -54,7 +55,7 @@
               <img class="card__image" src="./images/Elbrus.jpg" alt="Эльбрус">
               <div class="card__info">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <img class="card__like" src="./images/card__like.jpg" alt="сердечко">
+              <button class="card__like"></button>
               </div>
           </li>
         </ul>
@@ -63,7 +64,7 @@
               <img class="card__image" src="./images/Dombai.jpg" alt="Эльбрус">
               <div class="card__info">
               <h2 class="card__title">Домбай</h2>
-              <img class="card__like" src="./images/card__like.jpg" alt="сердечко">
+              <button class="card__like"></button>
               </div>
           </li>
         </ul>
@@ -71,8 +72,8 @@
           <li class="card__item">
               <img class="card__image" src="./images/Karachaevsk.jpg" alt="Замок в горах">
               <div class="card__info">
-              <h2 class="card__title">Карачаево-Ч...</h2>
-              <img class="card__like" src="./images/card__like.jpg" alt="сердечко">
+              <h2 class="card__title">Карачаево-Черкесия</h2>
+              <button class="card__like"></button>
               </div>
           </li>
         </ul>
@@ -81,6 +82,9 @@
     <footer class="footer">
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
- 
+    <section class="popup">
+      
+    </section>
+ <script src="./scripts/index.js"></script>
 </body>
 </html>

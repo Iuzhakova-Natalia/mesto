@@ -3,10 +3,10 @@
   margin: 45px auto 40px;
   display: flex;  
   flex-direction: column;
-  /*border: 1px solid red; */
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
-@media screen and (max-width: 938) {
+@media screen and (max-width: 938px) {
   .header {
     max-width: 884px;
     margin: 38px 27px 38px;

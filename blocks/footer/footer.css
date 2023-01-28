@@ -3,3 +3,16 @@
   max-width: 318px;
   margin: 0 auto 60px 200px;
 }
+
+@media screen and (max-width: 1200px) {
+  .footer {
+    margin-left: 160px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer {
+    max-width: 282px;
+    margin: 0 auto 36px;
+  }
+}

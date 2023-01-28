@@ -5,3 +5,18 @@
   flex-wrap: wrap;
   gap: 20px 17px;
 }
+
+@media screen and (max-width: 860px) {
+  .cards {
+    max-width: 585px;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .cards {
+    max-width: 282px;
+    display: flex;
+    flex-direction: column;
+    margin: 36px auto 48px;
+  }
+}
