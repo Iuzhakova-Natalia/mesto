@@ -1,4 +1,4 @@
-.profile__info-line {
+.profile__info-object {
   max-width: 336px;
   display: flex;
   justify-content: space-between;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 690px) {
-  .profile__info-line {
-    margin-top: 22px;
+  .profile__info-object {
+    margin-top: 24px;
   }
 }
