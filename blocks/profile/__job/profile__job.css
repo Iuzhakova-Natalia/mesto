@@ -4,13 +4,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin: 16px 0 0;
-}
-
-@media screen and (max-width: 690px) {
-  .profile__job {
-    margin-top: 14px;
-  }
+  margin: 0;
 }
 
 @media screen and (max-width: 595px) {
@@ -20,8 +14,3 @@
   }
 }
 
-@media screen and (max-width: 320px) {
-  .profile__job {
-    margin-top: 10px;
-  }
-}
