@@ -1,12 +1,10 @@
 .profile__info-object {
   max-width: 336px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 @media screen and (max-width: 690px) {
   .profile__info-object {
-    margin-top: 24px;
+    margin-top: 26px;
   }
 }
