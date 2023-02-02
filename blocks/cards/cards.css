@@ -15,7 +15,6 @@
 @media screen and (max-width: 610px) {
   .cards {
     max-width: 282px;
-    display: flex;
     flex-direction: column;
     margin: 36px auto 48px;
   }
