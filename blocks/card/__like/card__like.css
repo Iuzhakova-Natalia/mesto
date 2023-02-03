@@ -5,6 +5,7 @@
   background-image: url(../../../images/like_button.svg);
   background-size: 100%;
   background-repeat: no-repeat;
+  background-color: transparent;
   border: 0px;
   padding: 0;
   margin-right: 5px;

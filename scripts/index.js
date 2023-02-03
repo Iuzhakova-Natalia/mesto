@@ -3,6 +3,9 @@ const popup = document.querySelector('.popup');
 const closeBatton = popup.querySelector('.popup__close');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
+let formElement = document.querySelector('.form');
+let nameInput = document.querySelector('.form__input-text_type_name');
+let jobInput = document.querySelector('.form__input-text_type_job');
 
 
 const handleEditButtonClick = () => {
@@ -18,9 +21,7 @@ const handleCloseButtonClick =  () => {
 editButton.addEventListener('click', handleEditButtonClick);
 closeBatton.addEventListener('click', handleCloseButtonClick);
 
-let formElement = document.querySelector('.form');
-let nameInput = document.querySelector('.form__input-text_type_name');
-let jobInput = document.querySelector('.form__input-text_type_job');
+
 
 function handleFormSubmit (evt) {
   evt.preventDefault();
