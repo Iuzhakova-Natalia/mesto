@@ -18,12 +18,13 @@
 @import url(../blocks/cards/cards.css);
 
 @import url(../blocks/card/card.css);
+@import url(../blocks/card/__delete/card__delete.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__info/card__info.css);
 @import url(../blocks/card/__item/card__item.css);
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__like/_active/card__like_active.css);
-@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__place/card__place.css);
 
 
 @import url(../blocks/footer/footer.css);
@@ -40,3 +41,9 @@
 @import url(../blocks/form/__input-text/form__input-text.css);
 @import url(../blocks/form/__input-text/_type/form__input-text_type_job.css);
 @import url(../blocks/form/__input-text/_type/form__input-text_type_name.css);
+
+@import url(../blocks/popup-new-place/popup-new-place.css);
+@import url(../blocks/popup-new-place/__container/popup-new-place__container.css);
+@import url(../blocks/popup-new-place/__close/popup-new-place__close.css);
+@import url(../blocks/popup-new-place/__header/popup-new-place__header.css);
+@import url(../blocks/popup-new-place/_opened/popup-new-place_opened.css);

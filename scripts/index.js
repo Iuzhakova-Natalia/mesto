@@ -34,3 +34,20 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit); 
+
+const addButton = document.querySelector('.profile__add-button');
+const popupNewPlace = document.querySelector('.popup-new-place');
+const closeAddButton = popupNewPlace.querySelector('.popup-new-place__close');
+
+const handleAddButtonClick = () => {
+  popupNewPlace.classList.add('popup-new-place_opened'); 
+  
+}
+
+const handleCloseAddButtonClick =  () => {
+  popupNewPlace.classList.remove('popup-new-place_opened');
+
+}
+
+addButton.addEventListener('click', handleAddButtonClick);
+closeAddButton.addEventListener('click', handleCloseAddButtonClick);

@@ -1,5 +1,8 @@
 .card__image {
-  width: 100%;
+  width: 282px;
   height: 282px;
-  object-fit: contain;
+  /*display: flex;
+  justify-content: right;*/
+  object-fit: cover;
+  /*background-image: url(../../../images/Karachaevsk.jpg);*/
 }
