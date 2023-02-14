@@ -23,7 +23,7 @@ closeBatton.addEventListener('click', handleCloseButtonClick);
 
 
 
-function handleFormSubmit (evt) {
+const handleFormSubmit = (evt) => {
   evt.preventDefault();
 
   profileName.textContent = nameInput.value;
@@ -34,26 +34,6 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit); 
-
-/* попап форма Новое место*/
-const addButton = document.querySelector('.profile__add-button');
-const popupNewPlace = document.querySelector('.popup-new-place');
-const closeAddButton = popupNewPlace.querySelector('.popup-new-place__close');
-
-const handleAddButtonClick = () => {
-  popupNewPlace.classList.add('popup-new-place_opened'); 
-  
-}
-
-const handleCloseAddButtonClick =  () => {
-  popupNewPlace.classList.remove('popup-new-place_opened');
-
-}
-
-addButton.addEventListener('click', handleAddButtonClick);
-closeAddButton.addEventListener('click', handleCloseAddButtonClick);
-
-
 
 /* карточки */
 const cardsList = document.querySelector('.cards');
@@ -91,6 +71,52 @@ initialCards.forEach( element => {
 
   initialCardElement.querySelector('.card__name').textContent = element.name;
   initialCardElement.querySelector('.card__image').src = element.link;
+  initialCardElement.querySelector('.card__like').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('card__like_active');
+  });
 
   cardsList.append(initialCardElement);
 }); 
+
+/* лайк */
+
+/*const cardsElement = document.querySelector('.card__like');
+cardsElement.addEventListener('click', function(evt) {
+  evt.target.classList.toggle('card__like_active');
+});*/
+
+/* попап форма Новое место*/
+const addButton = document.querySelector('.profile__add-button');
+const popupNewPlace = document.querySelector('.popup-new-place');
+const closeAddButton = popupNewPlace.querySelector('.popup-new-place__close');
+let cardName = document.querySelector('.card__name');
+let cardImage = document.querySelector('.card__image');
+
+
+
+const handleAddButtonClick = () => {
+  popupNewPlace.classList.add('popup-new-place_opened'); 
+  
+}
+
+const handleCloseAddButtonClick =  () => {
+  popupNewPlace.classList.remove('popup-new-place_opened');
+
+}
+
+addButton.addEventListener('click', handleAddButtonClick);
+closeAddButton.addEventListener('click', handleCloseAddButtonClick);
+
+
+
+const handleNewFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  
+
+
+  handleCloseButtonClick();
+
+}
+
+formElement.addEventListener('submit', handleNewFormSubmit); 

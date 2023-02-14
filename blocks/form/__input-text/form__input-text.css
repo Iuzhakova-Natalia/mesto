@@ -19,3 +19,7 @@
 .form__input-text:nth-child(2) {
   margin-bottom: 0;
 }
+
+.form__input-text::placeholder {
+  color: #C4C4C4;
+}
