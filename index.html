@@ -23,15 +23,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="cards">
-        <ul class="card">
-          <li class="card__item">
-              <img class="card__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg">
-              <div class="card__info">
-              <h2 class="card__place">Архыз</h2>
-              <button class="card__like" type="button"></button>
-              </div>
-          </li>
-        </ul>
+        
       </section>
     </main>
     <footer class="footer">
@@ -53,21 +45,18 @@
         <button class="popup-new-place__close" type="button"></button>
         <h2 class="popup-new-place__header">Новое место</h2>
         <form class="form" name="form">
-            <input  class="form__input-text form__input-text_type_place" type="text" name="place">
-            <input  class="form__input-text form__input-text_type_link" type="text" name="link"> 
+            <input  class="form__input-text form__input-text_type_place" type="text" name="place" value="Название">
+            <input  class="form__input-text form__input-text_type_link" type="text" name="link" value="Ссылка на картинку"> 
           <button class="form__button" type="submit">Создать</button>
         </form>
       </div>
     </section>
-
     <template id="card-temlate">
       <ul class="card">
         <li class="card__item">
-            <div class="card__image">
-              <button class="card__delete" type="button"></button>
-            </div>
+            <img class="card__image" src="#" alt="фото местности">
             <div class="card__info">
-            <h2 class="card__place">Карачаевск</h2>
+            <h2 class="card__name"></h2>
             <button class="card__like" type="button"></button>
             </div>
         </li>
