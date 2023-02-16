@@ -29,27 +29,34 @@
     <footer class="footer">
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup_tupe_edit">
       <div class="popup__container">
-        <button class="popup__close" type="button"></button>
+        <button class="popup__close-button popup__close-button_type_edit-profile" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="form" name="form">
+        <form class="form form_type_edit-profile" name="form-edit-profile">
             <input  class="form__input-text form__input-text_type_name" type="text" name="name">
             <input  class="form__input-text form__input-text_type_job" type="text" name="job"> 
           <button class="form__button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
-    <section class="popup-new-place">
-      <div class="popup-new-place__container">
-        <button class="popup-new-place__close" type="button"></button>
-        <h2 class="popup-new-place__header">Новое место</h2>
-        <form class="form" name="form">
+    <section class="popup popup_type_new-place">
+      <div class="popup__container">
+        <button class="popup__close-button popup__close-button_type_new-place" type="button"></button>
+        <h2 class="popup__header">Новое место</h2>
+        <form class="form form_type_add-card" name="form-add-card">
             <input  class="form__input-text form__input-text_type_place" type="text" name="place" placeholder="Название">
             <input  class="form__input-text form__input-text_type_link" type="text" name="link" placeholder="Ссылка на картинку"> 
           <button class="form__button" type="submit">Создать</button>
         </form>
       </div>
+    </section>
+    <section class="popup popup_type_image">
+      <figure class="popup__window">
+        <button class="popup__close-button popup__close-button_type_image" type="button"></button>
+        <img class="popup__image" src="#" alt="#">
+        <figcaption class="popup__place"></figcaption>>
+      </figure>>
     </section>
     <template id="card-temlate">
       <ul class="card">

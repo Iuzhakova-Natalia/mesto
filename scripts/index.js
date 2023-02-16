@@ -1,43 +1,28 @@
-const editButton = document.querySelector('.profile__button_type_edit');
-const popup = document.querySelector('.popup');
-const closeBatton = popup.querySelector('.popup__close');
+/*данные для формы профайла*/
+const buttonEdit = document.querySelector('.profile__button_type_edit');
+const popupEditProfile = document.querySelector('.popup_tupe_edit');
+const closePopupEdit = document.querySelector('.popup__close-button_type_edit-profile');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
-let formElement = document.querySelector('.form');
+let formEditProfile = document.querySelector('.form_type_edit-profile');
 let nameInput = document.querySelector('.form__input-text_type_name');
 let jobInput = document.querySelector('.form__input-text_type_job');
 
+/*данные для формы нового места*/
+const buttonAdd = document.querySelector('.profile__add-button');
+const popupNewPlace = document.querySelector('.popup_type_new-place');
+const closePopupAdd = document.querySelector('.popup__close-button_type_new-place');
+let formAddCard = document.querySelector('.form_type_add-card');
+let cardNameInput = document.querySelector('.form__input-text_type_place');
+let cardImageInput = document.querySelector('.form__input-text_type_link');
 
-const handleEditButtonClick = () => {
-  popup.classList.add('popup_opened'); 
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-}
-
-const handleCloseButtonClick =  () => {
-    popup.classList.remove('popup_opened');  
-  }
-
-editButton.addEventListener('click', handleEditButtonClick);
-closeBatton.addEventListener('click', handleCloseButtonClick);
-
-
-
-const handleFormSubmit = (evt) => {
-  evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-
-  handleCloseButtonClick();
-
-}
-
-formElement.addEventListener('submit', handleFormSubmit); 
-
-/* карточки */
+/*карточки*/
 const cardsList = document.querySelector('.cards');
 const cardTemplate= document.querySelector('#card-temlate').content;
+const popupCard = document.querySelector('.popup_type_image');
+const closePopupCard = document.querySelector('.popup__close-button_type_image');
+
+/*массив*/
 const initialCards = [
   {
     name: 'Архыз',
@@ -65,58 +50,80 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach( element => {
+/* функции */
 
-  const initialCardElement = cardTemplate.cloneNode(true);
+const openPopup = (type) => {
+  type.classList.add('popup_opened'); 
+  if (type === popupEditProfile) {
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  };
+};
 
-  initialCardElement.querySelector('.card__name').textContent = element.name;
-  initialCardElement.querySelector('.card__image').src = element.link;
-  initialCardElement.querySelector('.card__like').addEventListener('click', function(evt) {
+function closePopup () {
+  popupEditProfile.classList.remove('popup_opened');
+  popupNewPlace.classList.remove('popup_opened');
+};
+
+const handleFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  profileName.textContent = nameInput.value;
+  profileJob.textContent = jobInput.value;
+
+  closePopup(popupEditProfile);
+};
+
+const makeNewCard =(name, link) => {
+  const newCard = cardTemplate.cloneNode(true);
+  const cardImage = newCard.querySelector('.card__image');
+  const cardName = newCard.querySelector('.card__name');
+  cardImage.src = link;
+  cardName.textContent = name;
+  cardName.alt = name;
+
+  const likeButton = newCard.querySelector('.card__like');
+  likeButton.addEventListener('click', evt => {
     evt.target.classList.toggle('card__like_active');
   });
 
-  cardsList.append(initialCardElement);
-}); 
+  const deleteButton = newCard.querySelector('.card__delete');
+  deleteButton.addEventListener('click', evt => {
+    evt.target.closest('.card').remove();
+  });
 
-/* лайк */
-
-/*const cardsElement = document.querySelector('.card__like');
-cardsElement.addEventListener('click', function(evt) {
-  evt.target.classList.toggle('card__like_active');
-});*/
-
-/* попап форма Новое место*/
-const addButton = document.querySelector('.profile__add-button');
-const popupNewPlace = document.querySelector('.popup-new-place');
-const closeAddButton = popupNewPlace.querySelector('.popup-new-place__close');
-let cardName = document.querySelector('.card__name');
-let cardImage = document.querySelector('.card__image');
-
-
-
-const handleAddButtonClick = () => {
-  popupNewPlace.classList.add('popup-new-place_opened'); 
-  
+  const popupCardImage = document.querySelector('.popup__image');
+  const popupCardPlace = document.querySelector('.popup__place');
+  const popupImage = document.querySelector('.popup_type_image');
+  const bigImage = () => {
+    openPopup(popupCard);
+    popupCardImage.src = cardImage.src;
+    popupCardImage.alt = cardPlace.alt;
+    popupCardPlace.textContent = cardName.textContent;
+  }
+  cardImage.addEventListener("clik", bigImage);
+  return newCard;
+};
+ 
+const renderCard =(name, link) => {
+  cardsList.append(makeNewCard(name, link));
 }
 
-const handleCloseAddButtonClick =  () => {
-  popupNewPlace.classList.remove('popup-new-place_opened');
+initialCards.forEach((card) => {
+  renderCard(card.name, card.link);
+});
 
-}
-
-addButton.addEventListener('click', handleAddButtonClick);
-closeAddButton.addEventListener('click', handleCloseAddButtonClick);
-
-
-
-const handleNewFormSubmit = (evt) => {
+const  handleFormAddSubmit = (evt) => {
   evt.preventDefault();
+  cardsList.prepend(makeNewCard(cardNameInput.value, cardImageInput.value));
+  closePopup(popupNewPlace);
+};
 
-  
-
-
-  handleCloseButtonClick();
-
-}
-
-formElement.addEventListener('submit', handleNewFormSubmit); 
+/*слушатели*/
+buttonEdit.addEventListener('click', () => openPopup(popupEditProfile));
+buttonAdd.addEventListener('click', () => openPopup(popupNewPlace));
+formEditProfile.addEventListener('submit', handleFormSubmit); 
+formAddCard.addEventListener('submit',  handleFormAddSubmit);
+closePopupEdit.addEventListener('click', closePopup);
+closePopupAdd.addEventListener('click', closePopup);
+closePopupCard.addEventListener('click', closePopup);
