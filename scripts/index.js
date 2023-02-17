@@ -80,7 +80,6 @@ const makeNewCard =(name, link) => {
   const cardName = newCard.querySelector('.card__name');
   cardImage.src = link;
   cardName.textContent = name;
-  cardName.alt = name;
 
   const likeButton = newCard.querySelector('.card__like');
   likeButton.addEventListener('click', evt => {
@@ -94,13 +93,12 @@ const makeNewCard =(name, link) => {
 
   const popupCardImage = document.querySelector('.popup__image');
   const popupCardPlace = document.querySelector('.popup__place');
-  const popupImage = document.querySelector('.popup_type_image');
   const bigImage = () => {
     openPopup(popupCard);
     popupCardImage.src = cardImage.src;
-    popupCardImage.alt = cardPlace.alt;
     popupCardPlace.textContent = cardName.textContent;
   }
+  
   cardImage.addEventListener("clik", bigImage);
   return newCard;
 };
