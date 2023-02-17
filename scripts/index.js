@@ -63,6 +63,7 @@ const openPopup = (type) => {
 function closePopup () {
   popupEditProfile.classList.remove('popup_opened');
   popupNewPlace.classList.remove('popup_opened');
+  popupCard.classList.remove('.popup_opened');
 };
 
 const handleFormSubmit = (evt) => {
@@ -98,14 +99,14 @@ const makeNewCard =(name, link) => {
     popupCardImage.src = cardImage.src;
     popupCardPlace.textContent = cardName.textContent;
   }
-  
-  cardImage.addEventListener("clik", bigImage);
+
+  cardImage.addEventListener('cliсk', bigImage);
   return newCard;
 };
  
 const renderCard =(name, link) => {
   cardsList.append(makeNewCard(name, link));
-}
+};
 
 initialCards.forEach((card) => {
   renderCard(card.name, card.link);
