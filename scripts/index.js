@@ -60,10 +60,10 @@ const openPopup = (type) => {
   };
 };
 
-function closePopup () {
+const closePopup =()=> {
   popupEditProfile.classList.remove('popup_opened');
   popupNewPlace.classList.remove('popup_opened');
-  popupCard.classList.remove('.popup_opened');
+  popupCard.classList.remove('popup_opened');
 };
 
 const handleFormSubmit = (evt) => {
@@ -100,7 +100,7 @@ const makeNewCard =(name, link) => {
     popupCardPlace.textContent = cardName.textContent;
   }
 
-  cardImage.addEventListener('cliсk', bigImage);
+  cardImage.addEventListener('click', bigImage);
   return newCard;
 };
  
