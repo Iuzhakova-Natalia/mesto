@@ -21,8 +21,9 @@ const cardsList = document.querySelector('.cards');
 const cardTemplate= document.querySelector('#card-temlate').content;
 const popupCard = document.querySelector('.popup_type_image');
 const closePopupCard = document.querySelector('.popup__close-button_type_image');
-const popupCardImage = document.querySelector('.popup__image');
-const popupCardPlace = document.querySelector('.popup__place');
+const popup = document.querySelector('.popup_type_image');
+const popupCardImage = popup.querySelector('.popup__image');
+const popupCardPlace = popup.querySelector('.popup__place');
 
 /* функции */
 
