@@ -26,13 +26,20 @@ const popupCardImage = popup.querySelector('.popup__image');
 const popupCardPlace = popup.querySelector('.popup__place');
 
 /* функции */
+const closeByEscape = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+};
 
 const openPopup =(popup)=> {
   popup.classList.add('popup_opened');
 }
 
 const closePopup = (popup) => { 
-  popup.classList.remove('popup_opened'); 
+  popup.classList.remove('popup_opened');
+  document.addEventListener('keydown', closeByEscape); 
 }; 
 
 const submitEditProfileForm = (evt) => {
