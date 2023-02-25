@@ -95,6 +95,16 @@ const  submitAddCardForm = (evt) => {
   closePopup(popupNewPlace);
 };
 
+const popupList = document.querySelectorAll('.popup');
+
+popupList.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')){
+  closePopup(evt.currentTarget);
+  }
+  });
+  });
+
 /*слушатели*/
 buttonOpenEditProfilePopup.addEventListener('click', () => {
   openPopup(popupEditProfile);
