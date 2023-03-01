@@ -4,7 +4,7 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  margin: 34px 0 54px;
+  margin: 34px 36px 54px;
   color: #000000; 
 }
 
@@ -18,6 +18,6 @@
   .popup__header {
     font-size: 18px;
     line-height: 22px;
-    margin: 25px 0 73px;
+    margin: 25px 22px 73px;
   }
 }

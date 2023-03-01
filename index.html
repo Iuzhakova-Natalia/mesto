@@ -33,10 +33,34 @@
       <div class="popup__container">
         <button class="popup__close-button popup__close-button_type_edit-profile" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="form form_type_edit-profile" name="form-edit-profile">
-            <input  class="form__input-text form__input-text_type_name" type="text" name="name" placeholder="Имя">
-            <input  class="form__input-text form__input-text_type_job" type="text" name="job" placeholder="Вид деятельности"> 
-          <button class="form__button" type="submit">Сохранить</button>
+        <form class="form form_type_edit-profile" name="form-edit-profile" novalidate>
+
+            <input
+              class="form__input-text form__input-text_type_name form__input-error-line" 
+              type="text" 
+              id="name-input" 
+              name="name" 
+              placeholder="Имя" 
+              minlength="2" 
+              maxlength="40"
+              value
+              required>
+
+            <span class="form__input-error name-input-error"></span>
+
+            <input
+              class="form__input-text form__input-text_type_job"
+              type="text"
+              id ="job-input"
+              name="job"
+              placeholder="Вид деятельности"
+              minlength="2"
+              maxlength="200"
+              value
+              required>
+
+            <span class="form__input-error job-input-error"></span> 
+          <button class="form__button form__button_disabled" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
@@ -44,10 +68,32 @@
       <div class="popup__container">
         <button class="popup__close-button popup__close-button_type_new-place" type="button"></button>
         <h2 class="popup__header">Новое место</h2>
-        <form class="form form_type_add-card" name="form-add-card">
-            <input  class="form__input-text form__input-text_type_place" type="text" name="place" placeholder="Название">
-            <input  class="form__input-text form__input-text_type_link" type="text" name="link" placeholder="Ссылка на картинку"> 
-          <button class="form__button" type="submit">Создать</button>
+        <form class="form form_type_add-card" name="form-add-card" novalidate>
+
+            <input  
+              class="form__input-text form__input-text_type_place"
+              type="text"
+              name="place"
+              id="place-input"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              value
+              required>
+
+            <span class="form__input-error place-input-error"></span>
+
+            <input
+              class="form__input-text form__input-text_type_link"
+              type="url"
+              id="link-input"
+              name="link"
+              placeholder="Ссылка на картинку"
+              value
+              required>
+
+            <span class="form__input-error link-input-error"></span> 
+          <button class="form__button form__button_disabled" type="submit">Создать</button>
         </form>
       </div>
     </section>

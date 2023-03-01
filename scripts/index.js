@@ -1,32 +1,5 @@
-/*данные для формы профайла*/
-const buttonOpenEditProfilePopup = document.querySelector('.profile__button_type_edit');
-const popupEditProfile = document.querySelector('.popup_tupe_edit');
-const buttonCloseEditProfilePopup = document.querySelector('.popup__close-button_type_edit-profile');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
-const formEditProfile = document.querySelector('.form_type_edit-profile');
-const nameInput = document.querySelector('.form__input-text_type_name');
-const jobInput = document.querySelector('.form__input-text_type_job');
-
-/*данные для формы нового места*/
-const buttonOpenAddCardPopup = document.querySelector('.profile__add-button');
-const popupNewPlace = document.querySelector('.popup_type_new-place');
-const buttenCloseAddCardPopup = document.querySelector('.popup__close-button_type_new-place');
-const formAddCard = document.querySelector('.form_type_add-card');
-const cardNameInput = document.querySelector('.form__input-text_type_place');
-const cardImageInput = document.querySelector('.form__input-text_type_link');
-
-/*карточки*/
-const cardsList = document.querySelector('.cards');
-const cardTemplate= document.querySelector('#card-temlate').content;
-const popupImageCard = document.querySelector('.popup_type_image');
-const buttonClosePopupImageCard = document.querySelector('.popup__close-button_type_image');
-const popup = document.querySelector('.popup_type_image');
-const popupCardImage = popup.querySelector('.popup__image');
-const popupCardPlace = popup.querySelector('.popup__place');
-
 /* функции */
-const closeByEscape = (evt) => {
+const closeByEscape = (evt) => {  
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -101,8 +74,8 @@ popupList.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
   if (evt.target === evt.currentTarget || evt.target.classList.contains('popup__close-button')){
   closePopup(evt.currentTarget);
-  }
-  });
+      }
+    });
   });
 
 /*слушатели*/

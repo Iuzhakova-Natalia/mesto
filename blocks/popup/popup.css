@@ -10,7 +10,7 @@
   align-items: center;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
-  transition: visibility 1s linear,opacity .6s linear;
+  transition: visibility .6s linear,opacity .6s linear;
   visibility: hidden;
   opacity: 0;
 }
