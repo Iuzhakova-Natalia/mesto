@@ -3,7 +3,7 @@ const settings = {
   inputSelector: '.form__input-text',
   submitButtonSelector: '.form__button',
   inactiveButtonClass: 'form__button_disabled',
-  inputErrorClass: 'form__input-error-line',
+  inputErrorClass: 'form__input-text_type_error-line',
   errorClass: 'form__input-error_active'
 }
 
