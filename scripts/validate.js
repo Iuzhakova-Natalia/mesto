@@ -14,7 +14,6 @@ function enableValidation (settings) {
   });
 }
 
-// Функция, которая проверяет валидность поля
 function checkInputValidity (formElement, inputElement, settings) {
   if (inputElement.validity.valid === true) {
       hideInputError(formElement, inputElement, settings);
@@ -23,15 +22,13 @@ function checkInputValidity (formElement, inputElement, settings) {
   }
 }
 
-// Функция, которая добавляет классы с ошибкой
 function showInputError (formElement, inputElement, errorMessage, settings) {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); // Находим элемент ошибки внутри самой функции
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); 
   inputElement.classList.add(settings.inputErrorClass);
   errorElement.classList.add(settings.errorClass);
   errorElement.textContent = errorMessage;
 }
 
-// Функция, которая удаляет классы с ошибкой
 function hideInputError (formElement, inputElement, settings) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(settings.inputErrorClass);
@@ -39,22 +36,19 @@ function hideInputError (formElement, inputElement, settings) {
   errorElement.textContent = '';
 }
 
-// Слушатель для всех полей
 function setEventListeners (formElement, settings) {
   const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
   const buttonElement = formElement.querySelector(settings.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, settings); // Вызовем toggleButtonState и передадим ей массив полей и кнопку
+  toggleButtonState(inputList, buttonElement, settings); 
 
-  inputList.forEach((inputElement) => {  // Обойдём все элементы полученной коллекции
-      inputElement.addEventListener('input', () => { // каждому полю добавим обработчик события input
+  inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
           checkInputValidity(formElement, inputElement, settings);
           toggleButtonState(inputList, buttonElement, settings);
       });
   });
 };
 
-// Функция принимает массив полей ввода
-// и элемент кнопки, состояние которой нужно менять
 function toggleButtonState (inputList, buttonElement, settings) {
   if (hasInvalidInput(inputList)) {
       buttonElement.classList.add(settings.inactiveButtonClass);
@@ -65,7 +59,6 @@ function toggleButtonState (inputList, buttonElement, settings) {
   }
 }
 
-// Функция принимает массив полей
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
