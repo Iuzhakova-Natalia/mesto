@@ -28,6 +28,7 @@ const cardTemplate = document.querySelector("#card-temlate").content;
 const buttonClosePopupImageCard = document.querySelector(
   ".popup__close-button_type_image"
 );
+const buttonSubmitCard = popupNewPlace.querySelector(".form__button");
 const popupImageCard = document.querySelector(".popup_type_image");
 const popupCardImage = document.querySelector(".popup__image");
 const popupCardPlace = document.querySelector(".popup__place");

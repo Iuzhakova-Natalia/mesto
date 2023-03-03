@@ -49,15 +49,23 @@ function setEventListeners(formElement, settings) {
   });
 }
 
-function toggleButtonState(inputList, buttonElement, settings) {
+const disableButton = (buttonElement, settings) => {
+  buttonElement.classList.add(settings.inactiveButtonClass);
+  buttonElement.setAttribute("disabled", true);
+};
+
+const enableButton = (buttonElement, settings) => {
+  buttonElement.classList.remove(settings.inactiveButtonClass);
+  buttonElement.removeAttribute("disabled");
+};
+
+const toggleButtonState = (inputList, buttonElement, settings) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(settings.inactiveButtonClass);
-    buttonElement.setAttribute("disabled", true);
+    disableButton(buttonElement, settings);
   } else {
-    buttonElement.classList.remove(settings.inactiveButtonClass);
-    buttonElement.removeAttribute("disabled");
+    enableButton(buttonElement, settings);
   }
-}
+};
 
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {

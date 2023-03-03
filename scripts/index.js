@@ -66,8 +66,7 @@ const submitAddCardForm = (evt) => {
   evt.preventDefault();
   cardsList.prepend(makeNewCard(cardNameInput.value, cardImageInput.value));
   evt.target.reset();
-  const buttonSubmitCard = popupNewPlace.querySelector(".form__button");
-  buttonSubmitCard.classList.add("form__button_disabled");
+  disableButton(buttonSubmitCard, settings);
   closePopup(popupNewPlace);
 };
 
