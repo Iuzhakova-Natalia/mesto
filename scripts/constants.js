@@ -1,39 +1,46 @@
 /*данные для формы профайла*/
-const buttonOpenEditProfilePopup = document.querySelector(
+export const buttonOpenEditProfilePopup = document.querySelector(
   ".profile__button_type_edit"
 );
-const popupEditProfile = document.querySelector(".popup_tupe_edit");
-const buttonCloseEditProfilePopup = document.querySelector(
+export const popupEditProfile = document.querySelector(".popup_tupe_edit");
+export const buttonCloseEditProfilePopup = document.querySelector(
   ".popup__close-button_type_edit-profile"
 );
-const profileName = document.querySelector(".profile__name");
-const profileJob = document.querySelector(".profile__job");
-const formEditProfile = document.querySelector(".form_type_edit-profile");
-const nameInput = document.querySelector(".form__input-text_type_name");
-const jobInput = document.querySelector(".form__input-text_type_job");
+export const profileName = document.querySelector(".profile__name");
+export const profileJob = document.querySelector(".profile__job");
+export const formEditProfile = document.querySelector(
+  ".form_type_edit-profile"
+);
+export const nameInput = document.querySelector(".form__input-text_type_name");
+export const jobInput = document.querySelector(".form__input-text_type_job");
 
 /*данные для формы нового места*/
-const buttonOpenAddCardPopup = document.querySelector(".profile__add-button");
-const popupNewPlace = document.querySelector(".popup_type_new-place");
-const buttenCloseAddCardPopup = document.querySelector(
+export const buttonOpenAddCardPopup = document.querySelector(
+  ".profile__add-button"
+);
+export const popupNewPlace = document.querySelector(".popup_type_new-place");
+export const buttenCloseAddCardPopup = document.querySelector(
   ".popup__close-button_type_new-place"
 );
-const formAddCard = document.querySelector(".form_type_add-card");
-const cardNameInput = document.querySelector(".form__input-text_type_place");
-const cardImageInput = document.querySelector(".form__input-text_type_link");
+export const formAddCard = document.querySelector(".form_type_add-card");
+export const cardNameInput = document.querySelector(
+  ".form__input-text_type_place"
+);
+export const cardImageInput = document.querySelector(
+  ".form__input-text_type_link"
+);
 
 /*карточки*/
-const cardsList = document.querySelector(".cards");
-const cardTemplate = document.querySelector("#card-temlate").content;
-const buttonClosePopupImageCard = document.querySelector(
+export const cardsList = document.querySelector(".cards");
+export const buttonClosePopupImageCard = document.querySelector(
   ".popup__close-button_type_image"
 );
-const buttonSubmitCard = popupNewPlace.querySelector(".form__button");
-const popupImageCard = document.querySelector(".popup_type_image");
-const popupCardImage = document.querySelector(".popup__image");
-const popupCardPlace = document.querySelector(".popup__place");
+export const buttonSubmitCard = popupNewPlace.querySelector(".form__button");
+export const popupCardImage = document.querySelector(".popup__image");
+export const popupCardPlace = document.querySelector(".popup__place");
+export const popupImageCard = document.querySelector(".popup_type_image");
 
-const initialCards = [
+export const initialCards = [
   {
     name: "Архыз",
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -60,7 +67,7 @@ const initialCards = [
   },
 ];
 
-const settings = {
+export const formValidationConfig = {
   formSelector: ".form",
   inputSelector: ".form__input-text",
   submitButtonSelector: ".form__button",
