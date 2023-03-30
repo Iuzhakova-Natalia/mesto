@@ -1,3 +1,4 @@
+import Section from './Section.js';
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import {
@@ -14,7 +15,7 @@ import {
   formAddCard,
   cardNameInput,
   cardImageInput,
-  cardsList,
+  cardsContainer,
   popupCardImage,
   popupCardPlace,
   popupImageCard,
@@ -73,7 +74,7 @@ const openImagePopup = (name, link) => {
   popupCardImage.alt = name;
 };
 
-//создать карточку
+/*создать карточку
 const generateCard = (data) => {
   const card = new Card(data, "#card-template", openImagePopup);
   return card.generateCard();
@@ -81,8 +82,20 @@ const generateCard = (data) => {
 
 // добавить карточки из массива
 initialCards.forEach((data) => {
-  cardsList.append(generateCard(data));
-});
+  cardsContainer.append(generateCard(data));
+}); */
+
+ //отрисовать карточки на странице
+const cardsList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#card-template', openImagePopup);
+    const cardElement = card.generateCard();
+    cardsList.addItem(cardElement);
+  }
+}, cardsContainer);
+
+cardsList.renderItems();
 
 // обработчик открытия формы "Редактировать профиль"
 const openFormProfile = () => {

@@ -26,7 +26,7 @@ export const cardImageInput = document.querySelector(
 );
 
 /*карточки*/
-export const cardsList = document.querySelector(".cards");
+export const cardsContainer = '.cards-container';
 export const popupCardImage = document.querySelector(".popup__image");
 export const popupCardPlace = document.querySelector(".popup__place");
 export const popupImageCard = document.querySelector(".popup_type_image");
@@ -64,3 +64,28 @@ export const configValidation = {
   inputErrorClass: "form__input-text_type_error-line",
   errorClass: "form__input-error_active",
 };
+
+/* попапы
+export const popupEditProfile = document.querySelector(".popup_tupe_edit");
+export const popupNewPlace = document.querySelector(".popup_type_new-place");
+export const popupImageCard = document.querySelector(".popup_type_image");
+
+// кнопки
+export const buttonOpenEditProfilePopup = document.querySelector(
+  ".profile__button_type_edit"
+);
+export const buttonOpenAddCardPopup = document.querySelector(
+  ".profile__add-button"
+);
+
+// форма Редактировать профиль
+export const formEditProfile = document.forms["form-edit-profile"];
+export const nameInput = document.querySelector(".form__input-text_type_name");
+export const jobInput = document.querySelector(".form__input-text_type_job");
+
+// профиль
+export const profileName = document.querySelector(".profile__name");
+export const profileJob = document.querySelector(".profile__job");
+
+// форма Новое место
+export const formAddCard = document.querySelector(".form_type_add-card");*/
