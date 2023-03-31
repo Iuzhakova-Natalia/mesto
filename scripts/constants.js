@@ -1,4 +1,4 @@
-/*данные для формы профайла*/
+/*
 export const buttonOpenEditProfilePopup = document.querySelector(
   ".profile__button_type_edit"
 );
@@ -12,7 +12,7 @@ export const formEditProfile = document.querySelector(
 export const nameInput = document.querySelector(".form__input-text_type_name");
 export const jobInput = document.querySelector(".form__input-text_type_job");
 
-/*данные для формы нового места*/
+/*данные для формы нового места
 export const buttonOpenAddCardPopup = document.querySelector(
   ".profile__add-button"
 );
@@ -25,11 +25,12 @@ export const cardImageInput = document.querySelector(
   ".form__input-text_type_link"
 );
 
-/*карточки*/
+/*карточки
+export const cardTemplate = '#card-template';
 export const cardsContainer = '.cards-container';
 export const popupCardImage = document.querySelector(".popup__image");
 export const popupCardPlace = document.querySelector(".popup__place");
-export const popupImageCard = document.querySelector(".popup_type_image");
+export const popupImageCard = document.querySelector(".popup_type_image");*/
 export const initialCards = [
   {
     name: "Архыз",
@@ -65,10 +66,10 @@ export const configValidation = {
   errorClass: "form__input-error_active",
 };
 
-/* попапы
-export const popupEditProfile = document.querySelector(".popup_tupe_edit");
-export const popupNewPlace = document.querySelector(".popup_type_new-place");
-export const popupImageCard = document.querySelector(".popup_type_image");
+// попапы
+export const popupEditProfileSelector = ".popup_tupe_edit";
+export const popupAddCardSelector = ".popup_type_new-place";
+export const popupCardImageSelector = ".popup_type_image";
 
 // кнопки
 export const buttonOpenEditProfilePopup = document.querySelector(
@@ -80,12 +81,18 @@ export const buttonOpenAddCardPopup = document.querySelector(
 
 // форма Редактировать профиль
 export const formEditProfile = document.forms["form-edit-profile"];
-export const nameInput = document.querySelector(".form__input-text_type_name");
-export const jobInput = document.querySelector(".form__input-text_type_job");
+export const inputName = document.querySelector(".form__input-text_type_name");
+export const inputJob = document.querySelector(".form__input-text_type_job");
 
 // профиль
-export const profileName = document.querySelector(".profile__name");
-export const profileJob = document.querySelector(".profile__job");
+export const profileInfo = {
+  userNameSelector: '.profile__name',
+  userJobSelector: '.profile__job'
+}
 
 // форма Новое место
-export const formAddCard = document.querySelector(".form_type_add-card");*/
+export const formCard = document.forms["form-add-card"];
+
+// template и контейнер для карточек
+export const cardTemplateSelector = '#card-template';
+export const cardsContainerSelector = '.cards-container'; 

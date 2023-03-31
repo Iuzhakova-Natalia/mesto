@@ -1,12 +1,12 @@
-class Card {
-  constructor(item, templateSelector, openImagePopup) {
+export default class Card {
+  constructor(data, templateSelector, handleCardClick) {
     this._templateSelector = templateSelector;
-    this._name = item.name;
-    this._link = item.link;
-    this._openImagePopup = openImagePopup;
+    this._name = data.name;
+    this._link = data.link;
+    this._handleCardClick = handleCardClick;
   }
 
-  _getTemplate() {
+  _getCardElement() {
     const cardElement = document
       .querySelector(this._templateSelector)
       .content.querySelector(".card")
@@ -14,46 +14,48 @@ class Card {
 
     return cardElement;
   }
+   // удалить карточку
+   _handleDelete() {
+    this._buttonDelete.closest('.card').remove();
+  }
+
   // поставить лайк
   _handleLike() {
-    this._buttonLike.classList.toggle("card__like_active");
+    this._buttonLike.classList.toggle('card__like_active');
   }
 
-  // удалить карточку
-  _handleDelete() {
-    this._buttonDelete.closest(".card").remove();
-  }
-  // установить слушатели по клику на лайк, корзину, картинку
+  // установить слушатели по клику на корзину, лайк, картинку
   _setEventListeners() {
-    this._buttonLike.addEventListener("click", () => {
-      this._handleLike();
-    });
-
-    this._buttonDelete.addEventListener("click", () => {
+    this._buttonDelete.addEventListener('click', () => {
       this._handleDelete();
     });
 
-    this._cardImage.addEventListener("click", () => {
-      this._openImagePopup(this._name, this._link);
+    this._buttonLike.addEventListener('click', () => {
+      this._handleLike();
+    });
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._cardImage.src, this._cardImage.alt);
     });
   }
   // заполнить шаблон карточки данными, добавить слушатели
   generateCard() {
-    this._element = this._getTemplate();
+    this._card = this._getCardElement();
 
-    this._cardImage = this._element.querySelector(".card__image");
-    this._cardName = this._element.querySelector(".card__name");
-    this._buttonLike = this._element.querySelector(".card__like");
-    this._buttonDelete = this._element.querySelector(".card__delete");
+    this._cardImage = this._card.querySelector('.card__image');
+    this._cardName = this._card.querySelector('.card__name');
+    this._buttonDelete = this._card.querySelector('.card__delete');
+    this._buttonLike = this._card.querySelector('.card__like');
 
     this._setEventListeners();
 
-    this._cardImage.src = this._link;
-    this._cardImage.alt = this._name;
     this._cardName.textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link;
 
-    return this._element;
+    return this._card;
   }
 }
 
-export default Card;
+
+

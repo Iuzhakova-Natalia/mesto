@@ -1,26 +1,24 @@
 import Section from './Section.js';
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from './Card.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
+import UserInfo from './UserInfo.js';
+import FormValidator from './FormValidator.js';
 import {
-  buttonOpenEditProfilePopup,
-  popupEditProfile,
-  popups,
-  profileName,
-  profileJob,
-  formEditProfile,
-  nameInput,
-  jobInput,
-  buttonOpenAddCardPopup,
-  popupNewPlace,
-  formAddCard,
-  cardNameInput,
-  cardImageInput,
-  cardsContainer,
-  popupCardImage,
-  popupCardPlace,
-  popupImageCard,
   initialCards,
   configValidation,
+  popupEditProfileSelector,
+  popupAddCardSelector,
+  popupCardImageSelector,
+  buttonOpenEditProfilePopup,
+  buttonOpenAddCardPopup,
+  formEditProfile,
+  inputJob,
+  inputName,
+  profileInfo,
+  formCard,
+  cardTemplateSelector,
+  cardsContainerSelector
 } from "./constants.js";
 
 // валидатор формы "Редактировать профиль"
@@ -31,114 +29,72 @@ const formProfileValidator = new FormValidator(
 formProfileValidator.enableValidation();
 
 // валидатор формы "Новое место"
-const formCardValidator = new FormValidator(configValidation, formAddCard);
+const formCardValidator = new FormValidator(configValidation, formCard);
 formCardValidator.enableValidation();
 
-// открыть попап
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
+const userInfo = new UserInfo(profileInfo);
+
+// обработчик редактирования профиля
+const handleEditProfile = () => {
+  const {name, job} = userInfo.getUserInfo();
+  inputName.value = name;
+  inputJob.value = job;
+  formProfileValidator.resetValidation();
+  popupEditProfile.open();
 };
 
-// закрыть попап
-const closePopup = (popup) => {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
+// обработчик submit профиля
+const handleSubmitProfile = (data) => {
+  userInfo.setUserInfo(data);
+  popupEditProfile.close();
 };
 
-// обработчик нажатия Escape
-const closeByEscape = (evt) => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
+// обработчик добавления карточки
+const handleAddCard = () => {
+  formCardValidator.resetValidation();
+  popupAddCard.open();
 };
 
-// закрыть попап кликом на оверлей или крестик
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (
-      evt.target.classList.contains("popup_opened") ||
-      evt.target.classList.contains("popup__close-button")
-    ) {
-      closePopup(popup);
-    }
-  });
-});
-
-// обработчик клика по картинке карточки
-const openImagePopup = (name, link) => {
-  openPopup(popupImageCard);
-  popupCardImage.src = link;
-  popupCardPlace.textContent = name;
-  popupCardImage.alt = name;
+// обработчик submit карточки
+const handleSubmitCard = ({ title: name, link }) => {
+  renderCard({ name, link });
+  popupAddCard.close();
 };
 
-/*создать карточку
-const generateCard = (data) => {
-  const card = new Card(data, "#card-template", openImagePopup);
-  return card.generateCard();
+// обработчик клика по картинке карточки (открыть)
+const handleCardClick = (cardImageSrc, cardImageAlt) => {
+  popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
-// добавить карточки из массива
-initialCards.forEach((data) => {
-  cardsContainer.append(generateCard(data));
-}); */
+// отрисовать карточку
+const renderCard = (data) => {
+  const card = new Card(data, cardTemplateSelector, handleCardClick);
+  const generatedCard = card.generateCard();
+  cardsList.addItem(generatedCard);
+}
 
- //отрисовать карточки на странице
+// отрисовать все карточки
 const cardsList = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '#card-template', openImagePopup);
-    const cardElement = card.generateCard();
-    cardsList.addItem(cardElement);
-  }
-}, cardsContainer);
+  renderer: renderCard
+}, cardsContainerSelector);
 
 cardsList.renderItems();
 
-// обработчик открытия формы "Редактировать профиль"
-const openFormProfile = () => {
-  formProfileValidator.resetValidation();
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  openPopup(popupEditProfile);
-};
+// слушатель клика по кнопке редактировать профиль (открыть)
+buttonOpenEditProfilePopup.addEventListener('click', handleEditProfile);
 
-// обработчик submit формы "Редактировать профиль"
-const submitFormProfile = () => {
-  profileName.textContent = nameInput.value;
-  profileJob.textContent = jobInput.value;
-  closePopup(popupEditProfile);
-};
+// слушатель клика по кнопке добавить карточку (открыть)
+buttonOpenAddCardPopup.addEventListener('click', handleAddCard);
 
-// обработчик открытия формы "Новое место"
-const openFormCard = () => {
-  formCardValidator.resetValidation();
-  openPopup(popupNewPlace);
-};
+// слушатель submit профиля
+const popupEditProfile = new PopupWithForm(popupEditProfileSelector, handleSubmitProfile);
+popupEditProfile.setEventListeners();
 
-// обработчик submit формы "Новое место"
-const submitFormCard = (evt) => {
-  const data = {
-    name: cardNameInput.value,
-    link: cardImageInput.value,
-  };
-  cardsList.prepend(generateCard(data));
-  evt.target.reset();
-  closePopup(popupNewPlace);
-};
+// слушатель submit карточки
+const popupAddCard = new PopupWithForm(popupAddCardSelector, handleSubmitCard);
+popupAddCard.setEventListeners();
 
-// слушатели
-
-// открыть форму "Редактировать профиль"
-buttonOpenEditProfilePopup.addEventListener("click", openFormProfile);
-
-// сохранить (закрыть) форму "Редактировать профиль"
-formEditProfile.addEventListener("submit", submitFormProfile);
-
-// открыть форму "Новое место"
-buttonOpenAddCardPopup.addEventListener("click", openFormCard);
-
-// сохранить (закрыть) форму "Новое место"
-formAddCard.addEventListener("submit", submitFormCard);
+// слушатель закрытия картинки карточки
+const popupCardImage = new PopupWithImage(popupCardImageSelector);
+popupCardImage.setEventListeners();
