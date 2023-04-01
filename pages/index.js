@@ -1,9 +1,9 @@
-import Section from './Section.js';
-import Card from './Card.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import UserInfo from './UserInfo.js';
-import FormValidator from './FormValidator.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 import {
   initialCards,
   configValidation,
@@ -13,13 +13,10 @@ import {
   buttonOpenEditProfilePopup,
   buttonOpenAddCardPopup,
   formEditProfile,
-  inputJob,
-  inputName,
-  profileInfo,
   formCard,
   cardTemplateSelector,
   cardsContainerSelector
-} from "./constants.js";
+} from '../utils/constants.js';
 
 // валидатор формы "Редактировать профиль"
 const formProfileValidator = new FormValidator(
@@ -32,13 +29,17 @@ formProfileValidator.enableValidation();
 const formCardValidator = new FormValidator(configValidation, formCard);
 formCardValidator.enableValidation();
 
-const userInfo = new UserInfo(profileInfo);
+// редактирование профиля
+const userInfo = new UserInfo({
+  userNameSelector: '.profile__name',
+  userJobSelector: '.profile__job'
+});
 
 // обработчик редактирования профиля
 const handleEditProfile = () => {
   const {name, job} = userInfo.getUserInfo();
-  inputName.value = name;
-  inputJob.value = job;
+  formEditProfile.name.value = name;
+  formEditProfile.job.value = job;
   formProfileValidator.resetValidation();
   popupEditProfile.open();
 };
@@ -56,8 +57,8 @@ const handleAddCard = () => {
 };
 
 // обработчик submit карточки
-const handleSubmitCard = ({ title: name, link }) => {
-  renderCard({ name, link });
+const handleSubmitCard = ({place: name, link}) => {
+  renderCard({name, link});
   popupAddCard.close();
 };
 
