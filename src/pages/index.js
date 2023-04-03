@@ -67,11 +67,15 @@ const handleCardClick = (cardImageSrc, cardImageAlt) => {
   popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
-// отрисовать карточку
-const renderCard = (data) => {
+// создать отдельную карточку
+const createCard = (data) => {
   const card = new Card(data, cardTemplateSelector, handleCardClick);
-  const generatedCard = card.generateCard();
-  cardsList.addItem(generatedCard);
+  return card.generateCard();
+}
+
+// отрисовать готовую карточку
+const renderCard = (data) => {
+  cardsList.addItem(createCard(data));
 }
 
 // отрисовать все карточки
