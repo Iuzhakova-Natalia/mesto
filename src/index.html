@@ -8,13 +8,13 @@
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header__logo.svg" alt="Логотип" />
+      <img class="header__logo" src="<%=require('./images/header__logo.svg')%>" alt="Логотип" />
     </header>
     <main class="content">
       <section class="profile">
         <img
           class="profile__avatar"
-          src="./images/profile__avatar.jpg"
+          src="<%=require('./images/profile__avatar.jpg')$>"
           alt="фото"
         />
         <div class="profile__info">
@@ -142,7 +142,5 @@
         </li>
       </ul>
     </template>
-
-    <script defer src="./pages/index.js" type="module"></script>
   </body>
 </html>
