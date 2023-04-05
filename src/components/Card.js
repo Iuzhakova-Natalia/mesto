@@ -16,7 +16,6 @@ export default class Card {
   }
    // удалить карточку
    _handleDelete() {
-    //this._buttonDelete.closest('.card').remove();
     this._card.remove();
     this._card = null;
   }
