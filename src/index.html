@@ -11,7 +11,7 @@
     </header>
     <main class="content">
       <section class="profile">
-        <button class="profile__ava-button">
+        <button class="profile__ava-button" type="button">
         <img
           class="profile__avatar"
           src="<%=require('./images/profile__avatar.jpg')%>"
@@ -131,6 +131,41 @@
         <figcaption class="popup__place"></figcaption>
       </figure>
     </section>
+    <section class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button
+          class="popup__close-button popup__close-button_type_avatar"
+          type="button">
+        </button>
+        <h2 class="popup__header">Обновить аватар</h2>
+          <form class="form form_type_avatar" name="form-avatar" novalidate>
+            <input 
+              class="form__input-text form__input-text_type_avatar"
+              type="url"
+              id="avatar-input"
+              name="avatar"
+              placeholder="Ссылка на картинку"
+					    required
+            />
+             <span class="form__input-error avatar-input-error"></span>
+
+              <button class="form__button form__button_disabled" type="submit">
+                Сохранить
+              </button>
+
+          </form>
+       </div>
+    </section>
+    <section class="popup popup_type_delete-card">
+      <div class="popup__container">
+        <button
+          class="popup__close-button popup__close-button_type_delete-card"
+          type="button">
+          <h2 class="popup__header">Вы уверены?</h2>
+          <button class="form__button form__button_disabled" type="submit">
+            Да
+          </button>
+    </section>
     <template id="card-template">
       <ul class="card"> 
         <li class="card__item">
@@ -138,7 +173,10 @@
           <button class="card__delete" type="button"></button>
           <div class="card__info">
             <h2 class="card__name"></h2>
-            <button class="card__like" type="button"></button>
+              <div class="card__like-container">
+                <button class="card__like" type="button"></button>
+                 <h3 class="card__like-namber"></h3>
+              </div>
           </div>
         </li>
       </ul>

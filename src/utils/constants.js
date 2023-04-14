@@ -38,6 +38,7 @@ export const configValidation = {
 export const popupEditProfileSelector = ".popup_tupe_edit";
 export const popupAddCardSelector = ".popup_type_new-place";
 export const popupCardImageSelector = ".popup_type_image";
+export const popupAvatarSelector = ".popup_type_avatar";
 
 // кнопки
 export const buttonOpenEditProfilePopup = document.querySelector(
@@ -46,9 +47,13 @@ export const buttonOpenEditProfilePopup = document.querySelector(
 export const buttonOpenAddCardPopup = document.querySelector(
   ".profile__add-button"
 );
+export const buttonOpenAvatarPopup = document.querySelector(".profile__ava-button");
 
 // форма Редактировать профиль
 export const formEditProfile = document.forms["form-edit-profile"];
+
+// форма Обновить аватар
+export const formAvatar = document.forms["form-avatar"];
 
 // форма Новое место
 export const formCard = document.forms["form-add-card"];

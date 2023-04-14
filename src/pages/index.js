@@ -9,22 +9,26 @@ import {
   initialCards,
   configValidation,
   popupEditProfileSelector,
+  popupAvatarSelector,
   popupAddCardSelector,
   popupCardImageSelector,
   buttonOpenEditProfilePopup,
+  buttonOpenAvatarPopup,
   buttonOpenAddCardPopup,
   formEditProfile,
+  formAvatar,
   formCard,
   cardTemplateSelector,
   cardsContainerSelector
 } from '../utils/constants.js';
 
 // валидатор формы "Редактировать профиль"
-const formProfileValidator = new FormValidator(
-  configValidation,
-  formEditProfile
-);
+const formProfileValidator = new FormValidator(configValidation, formEditProfile);
 formProfileValidator.enableValidation();
+
+// валидатор формы "Обновить аватар"
+const formAvatarValidator = new FormValidator(configValidation, formAvatar);
+formAvatarValidator.enableValidation();
 
 // валидатор формы "Новое место"
 const formCardValidator = new FormValidator(configValidation, formCard);
@@ -33,7 +37,8 @@ formCardValidator.enableValidation();
 // редактирование профиля
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
-  userJobSelector: '.profile__job'
+  userJobSelector: '.profile__job',
+  userAvatarSelector: '.profile__avatar'
 });
 
 // обработчик редактирования профиля
@@ -50,6 +55,14 @@ const handleSubmitProfile = (data) => {
   userInfo.setUserInfo(data);
   popupEditProfile.close();
 };
+
+// обработчик Обновить аватар
+
+const handleAvatarProfile = () => {
+ 
+  formAvatarValidator.resetValidation();
+
+}
 
 // обработчик добавления карточки
 const handleAddCard = () => {
@@ -89,6 +102,9 @@ cardsList.renderItems();
 
 // слушатель клика по кнопке редактировать профиль (открыть)
 buttonOpenEditProfilePopup.addEventListener('click', handleEditProfile);
+
+// слушатель клика по кнопке Обновить аватар(открыть)
+buttonOpenAvatarPopup.addEventListener('click', handleAvatarProfile);
 
 // слушатель клика по кнопке добавить карточку (открыть)
 buttonOpenAddCardPopup.addEventListener('click', handleAddCard);
