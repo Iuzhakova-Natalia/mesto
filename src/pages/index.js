@@ -47,7 +47,7 @@ formCardValidator.enableValidation();
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
   userJobSelector: '.profile__job',
-  userAvatarSelector: '.profile__avatar'
+  //userAvatarSelector: '.profile__avatar'
 });
 
 // получить данные о пользователе с сервера
@@ -105,7 +105,7 @@ const handleSubmitCard = ({ name, link }) => {
   api.addCard({ name, link })
     .then((cardData) => {
       renderCard(cardData);
-      popupFormCard.close();
+      popupAddCard.close();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -163,7 +163,7 @@ api.getInitialCards()
 buttonOpenEditProfilePopup.addEventListener('click', handleEditProfile);
 
 // слушатель клика по кнопке Обновить аватар(открыть)
-buttonOpenAvatarPopup.addEventListener('click', handleAvatarProfile);
+//buttonOpenAvatarPopup.addEventListener('click', handleAvatarProfile);
 
 // слушатель клика по кнопке добавить карточку (открыть)
 buttonOpenAddCardPopup.addEventListener('click', handleAddCard);
