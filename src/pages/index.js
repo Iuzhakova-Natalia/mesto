@@ -1,4 +1,5 @@
 import './index.css';
+import Api from "../components/Api";
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -22,6 +23,14 @@ import {
   cardsContainerSelector
 } from '../utils/constants.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
+  headers: {
+    authorization: 'a24e7087-a96b-4b2b-8905-f0302e2d2b76',
+    'Content-Type': 'application/json'
+  }
+}); 
+
 // валидатор формы "Редактировать профиль"
 const formProfileValidator = new FormValidator(configValidation, formEditProfile);
 formProfileValidator.enableValidation();
@@ -41,6 +50,15 @@ const userInfo = new UserInfo({
   userAvatarSelector: '.profile__avatar'
 });
 
+// получить данные о пользователе с сервера
+api.getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  }); 
+
 // обработчик редактирования профиля
 const handleEditProfile = () => {
   const {name, job} = userInfo.getUserInfo();
@@ -51,10 +69,21 @@ const handleEditProfile = () => {
 };
 
 // обработчик submit профиля
-const handleSubmitProfile = (data) => {
-  userInfo.setUserInfo(data);
-  popupEditProfile.close();
+const handleSubmitProfile = (userData) => {
+  api.setUserInfo(userData)
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    popupEditProfile.close();
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  }); 
 };
+
+/** Изменение аватара через попап */
+buttonOpenAvatarPopup.addEventListener('click', () => {
+  popupAvatar.open();
+})
 
 // обработчик Обновить аватар
 
@@ -63,6 +92,7 @@ const handleAvatarProfile = () => {
   formAvatarValidator.resetValidation();
 
 }
+// Добавление карточеки
 
 // обработчик добавления карточки
 const handleAddCard = () => {
@@ -70,16 +100,35 @@ const handleAddCard = () => {
   popupAddCard.open();
 };
 
-// обработчик submit карточки
-const handleSubmitCard = ({place: name, link}) => {
-  renderCard({name, link});
-  popupAddCard.close();
+// обработчик submit/закрытия формы "Новое место"
+const handleSubmitCard = ({ name, link }) => {
+  api.addCard({ name, link })
+    .then((cardData) => {
+      renderCard(cardData);
+      popupFormCard.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    }); 
 };
 
+
+// обработчик submit карточки
+//const handleSubmitCard = ({place: name, link}) => {
+ // renderCard({name, link});
+ // popupAddCard.close();
+//};
+
+// картинка карточки
 // обработчик клика по картинке карточки (открыть)
 const handleCardClick = (cardImageSrc, cardImageAlt) => {
   popupCardImage.open(cardImageSrc, cardImageAlt);
 };
+
+
+// Отрисовка карточек
+
+let cardsList;
 
 // создать отдельную карточку
 const createCard = (data) => {
@@ -93,12 +142,22 @@ const renderCard = (data) => {
 }
 
 // отрисовать все карточки
-const cardsList = new Section({
-  items: initialCards,
-  renderer: renderCard
-}, cardsContainerSelector);
+const renderInitialCards = (cardsData) => {
+  cardsList = new Section({
+    items: cardsData,
+    renderer: renderCard
+  }, cardsContainerSelector);
+  cardsList.renderItems();
+}
 
-cardsList.renderItems();
+// загрузить начальные карточки с сервера
+api.getInitialCards()
+  .then((cardsData) => {
+    renderInitialCards(cardsData);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  }); 
 
 // слушатель клика по кнопке редактировать профиль (открыть)
 buttonOpenEditProfilePopup.addEventListener('click', handleEditProfile);
