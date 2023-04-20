@@ -42,6 +42,7 @@
 .popup_type_image{background:rgba(0,0,0,.9)}
 
 
+
 .form{display:flex;flex-direction:column;width:100%}@media screen and (max-width:525px){.form{max-width:238px}}
 .form__button{background-color:#000;border-radius:2px;color:#fff;font-size:18px;font-weight:400;height:50px;line-height:22px;margin:13px auto 37px;padding:0;text-align:center;width:358px}.form__button:hover{cursor:pointer;opacity:.8}@media screen and (max-width:525px){.form__button{font-size:14px;height:46px;line-height:17px;margin:10px 22px 25px;width:238px}}
 .form__input-error{color:red;font-size:12px;line-height:15px;margin:0 36px;max-width:358px;min-height:30px;padding-top:5px}@media screen and (max-width:525px){.form__input-error{margin:0 22px;max-width:238px}}
