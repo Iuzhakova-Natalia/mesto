@@ -1,31 +1,4 @@
 
-export const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 export const configValidation = {
   inputSelector: ".form__input-text",
   submitButtonSelector: ".form__button",
@@ -39,23 +12,21 @@ export const popupEditProfileSelector = ".popup_tupe_edit";
 export const popupAddCardSelector = ".popup_type_new-place";
 export const popupCardImageSelector = ".popup_type_image";
 export const popupAvatarSelector = ".popup_type_avatar";
+export const popupFormConfirmationSelector = 'popup_type_delete-card';
+
+// профиль
+export const userNameSelector = '.profile__name';
+export const userAboutSelector = '.profile__about';
+export const userAvatarSelector = '.profile__avatar';
 
 // кнопки
-export const buttonOpenEditProfilePopup = document.querySelector(
-  ".profile__button_type_edit"
-);
-export const buttonOpenAddCardPopup = document.querySelector(
-  ".profile__add-button"
-);
+export const buttonOpenEditProfilePopup = document.querySelector(".profile__button_type_edit");
+export const buttonOpenAddCardPopup = document.querySelector(".profile__add-button");
 export const buttonOpenAvatarPopup = document.querySelector(".profile__ava-button");
 
-// форма Редактировать профиль
+// формы
 export const formEditProfile = document.forms["form-edit-profile"];
-
-// форма Обновить аватар
 export const formAvatar = document.forms["form-avatar"];
-
-// форма Новое место
 export const formCard = document.forms["form-add-card"];
 
 // template и контейнер для карточек

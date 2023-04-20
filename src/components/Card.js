@@ -1,33 +1,31 @@
 export default class Card {
-  constructor(cardData, templateSelector, handleCardClick, { handleLikeClick }) {
-    this._templateSelector = templateSelector;
+  constructor(cardData, userId, templateSelector, handleCardClick, { handleLikeClick, handleDeleteClick }) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._likes = cardData.likes;
     this._cardId = cardData._id;
     this._ownerId = cardData.owner._id;
+    this._userId = userId;
+    this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getCardElement() {
     const cardElement = document
       .querySelector(this._templateSelector)
-      .content.querySelector(".card")
+      .content
+      .querySelector(".card")
       .cloneNode(true);
 
     return cardElement;
   }
-   // удалить карточку
-   _handleDelete() {
-    this._card.remove();
-    this._card = null;
-  }
 
   // поставить лайк
-  _handleLike() {
-    this._buttonLike.classList.toggle('card__like_active');
-    his._likeCounter.textContent = likesArray.length;
+  putLike(likesArray) {
+    this._likeCounter.textContent = likesArray.length;
+    this._buttonLike.classList.add('card__like_active');
     this.isLiked = true;
   }
 
@@ -35,26 +33,23 @@ export default class Card {
   deleteLike(likesArray) {
     this._buttonLike.classList.remove('card__like_active');
     this._likeCounter.textContent = likesArray.length;
-    this.isLiked = false;
+    this._isLiked = false;
   }
 
-  // проверить, стоит ли мой лайк
-  isLiked() {
-    if (this._likes.some((like) => like._id === this._ownerId)) {
-      return true;
-    } else {
-      return false;
-    }
+  // удалить карточку
+  deleteCard() {
+    this._card.remove();
+    this._card = null;
   }
 
   // установить слушатели по клику на корзину, лайк, картинку
   _setEventListeners() {
     this._buttonDelete.addEventListener('click', () => {
-      this._handleDelete();
+    this._handleDeleteClick(this._cardId);
     });
 
     this._buttonLike.addEventListener('click', () => {
-      this._handleLikeClick(this._cardId, this.isLiked);
+      this._handleLikeClick(this._cardId, this._isLiked);
     });
 
     this._cardImage.addEventListener('click', () => {
@@ -73,6 +68,18 @@ export default class Card {
     this._likeCounter = this._card.querySelector('.card__like-counter');
 
     this._likeCounter.textContent = this._likes.length;
+
+    if (this._likes.some((user) => user._id === this._ownerId)) {
+      this._isLiked = true;
+      this._buttonLike.classList.add('card__like_active');
+    } else {
+      this._isLiked = false;
+      this._buttonLike.classList.remove('card__like_active');
+    }
+
+    if (this._ownerId !== this._userId) {
+      this._buttonDelete.remove();
+    }
 
     this._setEventListeners();
 

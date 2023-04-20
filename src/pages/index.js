@@ -4,15 +4,19 @@ import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithСonfirmation from '../components/PopupWithСonfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import {
-  //initialCards,
   configValidation,
   popupEditProfileSelector,
   popupAvatarSelector,
   popupAddCardSelector,
   popupCardImageSelector,
+  popupFormConfirmationSelector,
+  userNameSelector,
+  userAboutSelector,
+  userAvatarSelector,
   buttonOpenEditProfilePopup,
   buttonOpenAvatarPopup,
   buttonOpenAddCardPopup,
@@ -22,6 +26,8 @@ import {
   cardTemplateSelector,
   cardsContainerSelector
 } from '../utils/constants.js';
+
+let userId;
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64',
@@ -37,6 +43,7 @@ const api = new Api({
 api.getUserInfo()
   .then((userData) => {
     userInfo.setUserInfo(userData);
+    userId = userData._id;
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
@@ -53,14 +60,19 @@ const handleEditProfile = () => {
 
 // обработчик submit профиля
 const handleSubmitProfile = (userData) => {
-  patchUserInfo(userData)
+  popupEditProfile.renderLoading(true);
+  // запрос на сервер: обновить данные о пользователе
+  api.patchUserInfo(userData)
     .then((userData) => {
       userInfo.setUserInfo(userData);
-    popupEditProfile.close();
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  }); 
+      popupEditProfile.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      popupEditProfile.renderLoading(false);
+    })
 };
 
 // Добавление карточек
@@ -74,11 +86,12 @@ const handleCardClick = (cardImageSrc, cardImageAlt) => {
 const renderCard = (cardData) => {
   const card = new Card(
     cardData,
+    userId,
     cardTemplateSelector,
     handleCardClick,
-    {
-      handleLikeClick: (cardId, isLiked) => {
+    {handleLikeClick: (cardId, isLiked) => {
         if (isLiked) {
+          // запрос на сервер: удалить лайк
           api.deleteLike(cardId)
             .then((cardData) => {
               card.deleteLike(cardData.likes);
@@ -87,6 +100,7 @@ const renderCard = (cardData) => {
               console.log(`Ошибка: ${err}`);
             });
         } else {
+          // запрос на сервер: поставить лайк
           api.putLike(cardId)
             .then((cardData) => {
               card.putLike(cardData.likes);
@@ -95,8 +109,22 @@ const renderCard = (cardData) => {
               console.log(`Ошибка: ${err}`);
             });
         }
+      },
+      handleDeleteClick: (cardId) => {
+        popupFormConfirmation.open();
+        popupFormConfirmation.handleSubmit(() => {
+          // запрос на сервер: удалить карточку
+          api.deleteCard(cardId)
+            .then((cardData) => {
+              card.deleteCard(cardData._id);
+              popupFormConfirmation.close();
+            })
+            .catch((err) => {
+              console.log(`Ошибка: ${err}`);
+            });
+        })
       }
-    }
+    },
   );
   const generatedCard = card.generateCard();
   cardsContainer.addItem(generatedCard);
@@ -111,6 +139,8 @@ const handleAddCard = () => {
 
 // обработчик submit/закрытия формы "Новое место"
 const handleSubmitCard = (cardData) => {
+  popupAddCard.renderLoading(true);
+  // запрос на сервер: добавить карточку
   api.postCard(cardData)
     .then((cardData) => {
       renderCard(cardData);
@@ -118,7 +148,10 @@ const handleSubmitCard = (cardData) => {
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
-    }); 
+    })
+    .finally(() => {
+      popupAddCard.renderLoading(false);
+    })
 };
 
 // сервер: загрузить массив карточек
@@ -130,46 +163,57 @@ api.getCards()
     console.log(`Ошибка: ${err}`);
   });
 
+  // Обновление аватара
+
+  // открыть форму "Обновить аватар"
+  const handleOpenAvatar = () => {
+    formAvatarValidator.resetValidation();
+    popupAvatar.open();
+  };
+  
+  // submit + закрыть форму "Обновить аватар"
+  const handleSubmitAvatar = (userData) => {
+    popupAvatar.renderLoading(true);
+    // запрос на сервер: обновить аватар пользователя
+    api.patchAvatar(userData)
+      .then((userData) => {
+        userInfo.setUserAvatar(userData);
+        popupAvatar.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        popupAvatar.renderLoading(false);
+      })
+  };
+
 // Экземпляры классов
 
-const userInfo = new UserInfo(userNameSelector, userAboutSelector);
+const userInfo = new UserInfo(userNameSelector, userAboutSelector, userAvatarSelector);
 const cardsContainer = new Section({ renderer: renderCard }, cardsContainerSelector);
 const popupEditProfile = new PopupWithForm(popupEditProfileSelector, handleSubmitProfile);
+const popupAvatar = new PopupWithForm(popupAvatarSelector, handleSubmitAvatar);
+const popupFormConfirmation = new PopupWithСonfirmation(popupFormConfirmationSelector);
 const popupAddCard = new PopupWithForm(popupAddCardSelector,handleSubmitCard);
 const popupCardImage = new PopupWithImage(popupCardImageSelector);
 const formProfileValidator = new FormValidator(configValidation, formEditProfile);
-const formCardValidator = new FormValidator(configValidation, formCard); 
+const formCardValidator = new FormValidator(configValidation, formCard);
+const formAvatarValidator = new FormValidator(configValidation, formAvatar); 
 
 // ВАЛИДАЦИЯ ФОРМ
 
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
+formAvatarValidator.enableValidation();
 
 // СЛУШАТЕЛИ СОБЫТИЙ
 
 buttonOpenEditProfilePopup.addEventListener('click', handleEditProfile);
 buttonOpenAddCardPopup.addEventListener('click', handleAddCard);
+buttonOpenAvatarPopup.addEventListener('click', handleOpenAvatar);
 popupEditProfile.setEventListeners();
+popupAvatar.setEventListeners();
+popupFormConfirmation.setEventListeners();
 popupAddCard.setEventListeners();
 popupCardImage.setEventListeners();
-
-// слушатель клика по кнопке редактировать профиль (открыть)
-//buttonOpenEditProfilePopup.addEventListener('click', handleEditProfile);
-
-// слушатель клика по кнопке Обновить аватар(открыть)
-//buttonOpenAvatarPopup.addEventListener('click', handleAvatarProfile);
-
-// слушатель клика по кнопке добавить карточку (открыть)
-//buttonOpenAddCardPopup.addEventListener('click', handleAddCard);
-
-// слушатель submit профиля
-//const popupEditProfile = new PopupWithForm(popupEditProfileSelector, handleSubmitProfile);
-//popupEditProfile.setEventListeners();
-
-// слушатель submit карточки
-//const popupAddCard = new PopupWithForm(popupAddCardSelector, handleSubmitCard);
-//popupAddCard.setEventListeners();
-
-// слушатель закрытия картинки карточки
-//const popupCardImage = new PopupWithImage(popupCardImageSelector);
-//popupCardImage.setEventListeners();
