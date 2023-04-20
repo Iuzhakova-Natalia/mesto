@@ -7,13 +7,13 @@
 }
 
 @media screen and (max-width: 875px) {
-  .cards {
+  .cards-container {
     max-width: 585px;
   }
 }
 
 @media screen and (max-width: 610px) {
-  .cards {
+  .cards-container {
     max-width: 282px;
     flex-direction: column;
     margin: 36px auto 48px;
