@@ -45,10 +45,11 @@
 @import url(../blocks/popup/__close-button/_type/popup__close_type_image.css);
 @import url(../blocks/popup/__close-button/_type/popup__close_type_new-place.css);
 @import url(../blocks/popup/__close-button/_type/popup__close-button_type_avatar.css);
-@import url(../blocks/popup/_type/popup_tupe_edit.css);
+@import url(../blocks/popup/_type/popup_type_edit.css);
 @import url(../blocks/popup/_type/popup_type_image.css);
 @import url(../blocks/popup/_type/popup_type_new-place.css);
 @import url(../blocks/popup/_type/popup_type_delete-card.css);
+@import url(../blocks/popup/_type/popup_type_avatar.css);
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__button/form__button.css);

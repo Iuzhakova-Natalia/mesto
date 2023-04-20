@@ -12,7 +12,7 @@ export const popupEditProfileSelector = ".popup_tupe_edit";
 export const popupAddCardSelector = ".popup_type_new-place";
 export const popupCardImageSelector = ".popup_type_image";
 export const popupAvatarSelector = ".popup_type_avatar";
-export const popupFormConfirmationSelector = 'popup_type_delete-card';
+export const popupFormConfirmationSelector = '.popup_type_delete-card';
 
 // профиль
 export const userNameSelector = '.profile__name';
