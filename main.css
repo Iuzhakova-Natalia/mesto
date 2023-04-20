@@ -21,7 +21,8 @@
 .card__item{display:flex;flex-direction:column;height:100%;list-style:none}
 .card__like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-repeat:no-repeat;background-size:100%;border:0;height:19px;margin:0;-o-object-fit:fill;object-fit:fill;padding:0;width:22px}.card__like:hover{cursor:pointer;opacity:.5}
 .card__like_active{background-image:url(fe17a515669479b1e649.svg)}
-.card__like-container{display:flex;flex-direction:column;margin:0}
+.card__like-container{align-items:center;display:flex;flex-direction:column;margin:0}
+.card__like-counter{font-size:13px;font-weight:400;line-height:16px}
 .card__like-namber{color:#000;font-family:Inter;font-size:13px;font-style:normal;font-weight:400;justify-items:center;line-height:16px;margin:0;padding:3px 0 0;text-align:center}
 .card__name{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .footer{display:flex;margin:0 auto 60px 200px;max-width:318px}@media screen and (max-width:1200px){.footer{margin-left:160px}}@media screen and (max-width:500px){.footer{margin:0 auto 36px;max-width:282px}}
