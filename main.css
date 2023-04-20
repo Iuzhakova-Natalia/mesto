@@ -13,7 +13,7 @@
 
 .profile__about{font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0;max-width:336px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:595px){.profile__about{font-size:14px;line-height:17px;max-width:282px}}
 .profile__add-button{background-color:transparent;background-image:url(d86bb2edc2f6eadb96b7.svg);background-position:50%;background-repeat:no-repeat;background-size:22px 22px;border:2px solid #fff;border-radius:2px;height:50px;margin-left:auto;padding:0;width:150px}.profile__add-button:hover{cursor:pointer;opacity:.6}@media screen and (max-width:690px){.profile__add-button{background-size:16px 16px;margin-left:0;margin-top:36px;width:282px}}@media screen and (max-width:320px){.profile__add-button{margin-top:32.5px}}
-.cards-container{display:flex;flex-wrap:wrap;gap:20px 17px;margin:51px auto 66px;max-width:880px}@media screen and (max-width:875px){.cards{max-width:585px}}@media screen and (max-width:610px){.cards{flex-direction:column;margin:36px auto 48px;max-width:282px}}
+.cards-container{display:flex;flex-wrap:wrap;gap:20px 17px;margin:51px auto 66px;max-width:880px}@media screen and (max-width:875px){.cards-container{max-width:585px}}@media screen and (max-width:610px){.cards-container{flex-direction:column;margin:36px auto 48px;max-width:282px}}
 .card{background-color:#fff;border-radius:10px;margin:0;max-width:282px;overflow:hidden;padding:0;position:relative}
 .card__delete{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);border:0;height:19px;margin:20px 20px 0 244px;position:absolute;width:18px}.card__delete:hover{cursor:pointer;opacity:.6}
 .card__image{height:282px;-o-object-fit:cover;object-fit:cover;width:282px}.card__image:hover{cursor:pointer}
@@ -22,7 +22,7 @@
 .card__like{background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-repeat:no-repeat;background-size:100%;border:0;height:19px;margin:0;-o-object-fit:fill;object-fit:fill;padding:0;width:22px}.card__like:hover{cursor:pointer;opacity:.5}
 .card__like_active{background-image:url(fe17a515669479b1e649.svg)}
 .card__like-container{align-items:center;display:flex;flex-direction:column;margin:0}
-.card__like-counter{font-size:13px;font-weight:400;line-height:16px}
+.card__like-counter{font-size:13px;font-weight:400;line-height:16px;padding-top:3px}
 .card__like-namber{color:#000;font-family:Inter;font-size:13px;font-style:normal;font-weight:400;justify-items:center;line-height:16px;margin:0;padding:3px 0 0;text-align:center}
 .card__name{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .footer{display:flex;margin:0 auto 60px 200px;max-width:318px}@media screen and (max-width:1200px){.footer{margin-left:160px}}@media screen and (max-width:500px){.footer{margin:0 auto 36px;max-width:282px}}
