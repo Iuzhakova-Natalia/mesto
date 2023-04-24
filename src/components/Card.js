@@ -26,7 +26,7 @@ export default class Card {
   putLike(likesArray) {
     this._likeCounter.textContent = likesArray.length;
     this._buttonLike.classList.add('card__like_active');
-    this.isLiked = true;
+    this._isLiked = true;
   }
 
   // удалить лайк
@@ -45,7 +45,7 @@ export default class Card {
   // установить слушатели по клику на корзину, лайк, картинку
   _setEventListeners() {
     this._buttonDelete.addEventListener('click', () => {
-    this._handleDeleteClick(this._cardId);
+      this._handleDeleteClick(this._cardId);
     });
 
     this._buttonLike.addEventListener('click', () => {
@@ -56,6 +56,7 @@ export default class Card {
       this._handleCardClick(this._cardImage.src, this._cardImage.alt);
     });
   }
+
 
   // заполнить шаблон карточки данными, добавить слушатели
   generateCard() {

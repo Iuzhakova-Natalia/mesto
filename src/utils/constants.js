@@ -8,10 +8,10 @@ export const configValidation = {
 };
 
 // попапы
-export const popupEditProfileSelector = ".popup_tupe_edit";
-export const popupAddCardSelector = ".popup_type_new-place";
+export const popupFormProfileSelector = ".popup_tupe_edit";
+export const popupFormCardSelector = ".popup_type_new-place";
 export const popupCardImageSelector = ".popup_type_image";
-export const popupAvatarSelector = ".popup_type_avatar";
+export const popupFormAvatarSelector = ".popup_type_avatar";
 export const popupFormConfirmationSelector = '.popup_type_delete-card';
 
 // профиль
@@ -20,12 +20,12 @@ export const userAboutSelector = '.profile__about';
 export const userAvatarSelector = '.profile__avatar';
 
 // кнопки
-export const buttonOpenEditProfilePopup = document.querySelector(".profile__button_type_edit");
-export const buttonOpenAddCardPopup = document.querySelector(".profile__add-button");
-export const buttonOpenAvatarPopup = document.querySelector(".profile__ava-button");
+export const buttonEdit = document.querySelector(".profile__button_type_edit");
+export const buttonAdd = document.querySelector(".profile__add-button");
+export const buttonAvatar = document.querySelector(".profile__ava-button");
 
 // формы
-export const formEditProfile = document.forms["form-edit-profile"];
+export const formProfile = document.forms["form-edit-profile"];
 export const formAvatar = document.forms["form-avatar"];
 export const formCard = document.forms["form-add-card"];
 
