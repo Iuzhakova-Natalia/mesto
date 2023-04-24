@@ -37,19 +37,22 @@ const api = new Api({
   }
 }); 
 
-// Редактирование профиля
-
-// получить данные о пользователе с сервера
-api.getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
+// запрос на сервер:
+// получить данные о пользователе
+// получить карточки
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userData, cards]) => {
     userId = userData._id;
+    userInfo.setUserInfo(userData);
+    cardsContainer.renderItems(cards);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
-  }); 
+  })
 
-// обработчик редактирования профиля
+  // Редактирование профиля
+
+// открыть форму Редактировать профиль
 const handleEditProfile = () => {
   const {name, about} = userInfo.getUserInfo();
   formEditProfile.name.value = name;
@@ -82,8 +85,8 @@ const handleCardClick = (cardImageSrc, cardImageAlt) => {
   popupCardImage.open(cardImageSrc, cardImageAlt);
 };
 
-// добавить карточку
-const renderCard = (cardData) => {
+// создать карточку
+const createCard = (cardData) => {
   const card = new Card(
     cardData,
     userId,
@@ -126,10 +129,9 @@ const renderCard = (cardData) => {
       }
     },
   );
-  const generatedCard = card.generateCard();
-  cardsContainer.addItem(generatedCard);
+  const createdCard = card.generateCard();
+  return createdCard;
 };
-
 
 // открыть форму Новое место
 const handleAddCard = () => {
@@ -143,7 +145,7 @@ const handleSubmitCard = (cardData) => {
   // запрос на сервер: добавить карточку
   api.postCard(cardData)
     .then((cardData) => {
-      renderCard(cardData);
+      cardsContainer.addItem(createCard(cardData));
       popupAddCard.close();
     })
     .catch((err) => {
@@ -153,15 +155,6 @@ const handleSubmitCard = (cardData) => {
       popupAddCard.renderLoading(false);
     })
 };
-
-// сервер: загрузить массив карточек
-api.getCards()
-  .then((cards) => {
-    cardsContainer.renderItems(cards);
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });
 
   // Обновление аватара
 

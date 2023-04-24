@@ -31,8 +31,8 @@ export default class Card {
 
   // удалить лайк
   deleteLike(likesArray) {
-    this._buttonLike.classList.remove('card__like_active');
     this._likeCounter.textContent = likesArray.length;
+    this._buttonLike.classList.remove('card__like_active');
     this._isLiked = false;
   }
 

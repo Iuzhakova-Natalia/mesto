@@ -17,7 +17,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
       headers: this._headers
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 
   // обновить данные о пользователе
@@ -29,7 +30,8 @@ export default class Api {
         name,
         about
       })
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
   
   // обновить аватар пользователя
@@ -40,7 +42,8 @@ export default class Api {
       body: JSON.stringify({
         avatar
       })
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 
   // получить карточки
@@ -48,7 +51,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
       headers: this._headers
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 
   // добавить карточку
@@ -60,7 +64,8 @@ export default class Api {
         name,
         link
       })
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 
   // удалить карточку
@@ -68,7 +73,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 
   // поставить лайк
@@ -76,7 +82,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 
   // удалить лайк
@@ -84,6 +91,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
   }
 }
