@@ -2,6 +2,7 @@ export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._authorization = headers["authorization"];
   }
   
   // проверить ответ сервера
@@ -16,7 +17,7 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET',
-      headers: this._headers
+      headers: { authorization: this._authorization,},
     })
       .then(this._checkResponse)
   }
@@ -50,9 +51,10 @@ export default class Api {
   getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
-      headers: this._headers
+      headers: { authorization: this._authorization,},
     })
       .then(this._checkResponse)
+      .catch((err) => console.log(err));
   }
 
   // добавить карточку
